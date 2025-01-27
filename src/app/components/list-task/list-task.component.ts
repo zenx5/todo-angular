@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-
-type typeTask = {
-  title: string
-  description: string
-}
+import { TaskCoreService } from '../../task-service.service';
+import { typeChange } from '../../tools/constants';
 
 @Component({
   selector: 'list-task',
@@ -12,10 +9,22 @@ type typeTask = {
   styleUrl: './list-task.component.css'
 })
 export class ListTaskComponent {
-  tasks:typeTask[] = [
-    {
-      title: 'Tarea 1',
-      description: 'Algo por aca'
-    }
-  ]
+  tasks:typeTask[] = []
+
+  constructor(private taskService:TaskCoreService){
+    this.tasks = this.taskService.tasks
+    this.taskService.onChange( (listTask, current, tag) => {
+      if( tag===typeChange.LIST_CHANGED) {
+        this.tasks = listTask
+      }
+    })
+  }
+
+  editTask(index:number){
+    this.taskService.selectTask(index)
+  }
+
+  toggleCompleted(index:number){
+    this.taskService.toggleCompleted(index)
+  }
 }
