@@ -1,0 +1,19 @@
+@if( tasks.length > 0 ){
+    <ul class="border-t-2 border-b-2 pt-2">
+        @for( task of tasks; track $index){
+            <li class="flex flex-row justify-between p-2 border-b  items-center">
+                <span>
+                    <p class="font-bold">{{ task.title }}</p>
+                    <p class="relative left-2 text-gray-500 italic">{{ task.description }}</p>
+                </span>
+                <span class="flex flex-col gap-2">
+                    <button class="cursor-pointer bg-blue-200 hover:bg-blue-500 p-1 px-3 rounded-lg text-white">Editar</button>
+                    <button class="cursor-pointer bg-red-200 hover:bg-red-500 p-1 px-3 rounded-lg text-white">Eliminar</button>
+                </span>
+            </li>
+        }
+    </ul>
+}
+@else{
+    <p class="text-center italic opacity-50">Empty</p>
+}
