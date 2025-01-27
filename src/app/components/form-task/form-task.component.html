@@ -10,5 +10,8 @@
         placeholder="Tarea..."
         [formControl]="task"
         class="text-gray-500 font-bold outline-none border border-blue-200 bg-blue-50 p-2 rounded hover:border-blue-400 focus:border-blue-400 focus:bg-blue-200" />
-    <button type="button" (click)="onCreateTask()" class="bg-purple-500 p-2 px-10 rounded-lg text-white font-bold w-fit mx-auto hover:p-3 hover:px-12 transition-[padding] transition-5000">Crear</button>
+    <button [disabled]="!title.value || !task.value" type="button" (click)="onCreateTask()" class="bg-purple-500 p-2 px-10 rounded-lg text-white font-bold w-fit mx-auto hover:p-3 hover:px-12 transition-[padding] transition-5000 disabled:bg-purple-300 cursor-pointer disabled:cursor-not-allowed">
+        @if(isNewTask) { Crear }
+        @else { Guardar }
+    </button>
 </form>

@@ -14,6 +14,7 @@ import { typeChange } from '../../tools/constants';
 export class FormTaskComponent {
   title = new FormControl('')
   task = new FormControl('')
+  isNewTask = true
 
   constructor(private taskService:TaskCoreService) {
     taskService.onChange( (listTasks, indexTask, tag)=>{
@@ -21,6 +22,7 @@ export class FormTaskComponent {
         const task = listTasks[indexTask]
         this.title.setValue( task.title )
         this.task.setValue( task.description )
+        this.isNewTask = false
       }
     })
   }
@@ -39,5 +41,6 @@ export class FormTaskComponent {
 
     this.title.setValue("")
     this.task.setValue("")
+    this.isNewTask = true
   }
 }
